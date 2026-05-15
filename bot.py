@@ -4,7 +4,7 @@ from config import TOKEN
 from dataset import items_df
 from interactions import add_interaction
 from recommender import get_recommendations
-from database import init_db
+from db_funcs import init_db
 init_db()
 
 bot = telebot.TeleBot(TOKEN)
