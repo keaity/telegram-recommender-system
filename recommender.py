@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
 from dataset import items_df
-from database import get_interactions_df
+from db_funcs import get_interactions_df
 
 weights = {"view":1, "like":3, "fav":5}
 
