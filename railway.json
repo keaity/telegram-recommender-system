@@ -1,0 +1,5 @@
+{
+  "deploy": {
+    "startCommand": "PYTHONPATH=src python -m bot.bot"
+  }
+}
