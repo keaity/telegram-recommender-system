@@ -1,1 +1,1 @@
-worker: python -m src.bot.bot
+worker: PYTHONPATH=src python -m bot.bot
