@@ -1,3 +1,4 @@
 pyTelegramBotAPI
 pandas
 scikit-learn
+python-dotenv
