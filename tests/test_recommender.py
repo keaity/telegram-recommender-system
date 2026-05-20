@@ -25,9 +25,9 @@ def test_content_scores():
 def test_get_recommendations():
     """Проверка основной функции рекомендаций."""
     recommendations = get_recommendations(1)
-    
+
     assert isinstance(recommendations, pd.DataFrame)
-    
+
     # Проверяем структуру возвращаемого DataFrame
     expected = ["item_id", "title", "domain", "description"]
     assert list(recommendations.columns) == expected
