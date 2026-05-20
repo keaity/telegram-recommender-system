@@ -10,7 +10,7 @@ from db_funcs import init_db
 init_db()
 
 bot = telebot.TeleBot(TOKEN)
-user_positions = {}  # Словарь для хранения текущей позиции каждого пользователя в каталоге
+user_positions = {}  # Словарь для хранения текущей позиции каждого пользователя
 
 
 def main_menu():
@@ -44,8 +44,9 @@ def start(message):
     )
     bot.send_message(message.chat.id, text, reply_markup=main_menu())
 
+
 def send_item(chat_id, user_id):
-    """Отправляет пользователю один объект из каталога(с попыткой отправить картинку)."""
+    """Отправляет пользователю один объект из каталога(с попыткой отправить картинку)"""
     idx = user_positions.get(user_id, 0)
     item = items_df.iloc[idx]
 
