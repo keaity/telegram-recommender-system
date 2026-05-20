@@ -10,15 +10,22 @@ from db_funcs import init_db
 init_db()
 
 bot = telebot.TeleBot(TOKEN)
-user_positions = {}  # Словарь для хранения текущей позиции каждого пользователя в каталоге
+user_positions = {}  # Словарь для хранения  
+#текущей позиции каждого пользователя в каталоге
 
 
 def main_menu():
     """Создаёт главное меню с кнопками 'Каталог' и 'Рекомендации'."""
     markup = InlineKeyboardMarkup()
     markup.add(
-        InlineKeyboardButton("📚 Каталог", callback_data="catalog"),
-        InlineKeyboardButton("⭐ Рекомендации", callback_data="recs")
+        InlineKeyboardButton(
+            "📚 Каталог",
+            callback_data="catalog"
+        ),
+        InlineKeyboardButton(
+            "⭐ Рекомендации", 
+            callback_data="recs"
+        )
     )
     return markup
 
@@ -37,10 +44,10 @@ def start(message):
         "Нажми «Каталог», чтобы начать."
     )
     bot.send_message(message.chat.id, text, reply_markup=main_menu())
-
-
+    
 def send_item(chat_id, user_id):
-    """Отправляет пользователю один объект из каталога (с попыткой отправить картинку)."""
+    """Отправляет пользователю один объект из каталога
+    (с попыткой отправить картинку)."""
     idx = user_positions.get(user_id, 0)
     item = items_df.iloc[idx]
     
@@ -54,12 +61,24 @@ def send_item(chat_id, user_id):
         InlineKeyboardButton("➡️", callback_data="next")
     )
     markup.row(
-        InlineKeyboardButton("👁 Просмотр", callback_data=f"view_{item.item_id}"),
-        InlineKeyboardButton("👍 Лайк", callback_data=f"like_{item.item_id}"),
-        InlineKeyboardButton("❤️ Избранное", callback_data=f"fav_{item.item_id}")
+        InlineKeyboardButton(
+            "👁 Просмотр", 
+            callback_data=f"view_{item.item_id}"
+        ),
+        InlineKeyboardButton(
+            "👍 Лайк", 
+            callback_data=f"like_{item.item_id}"
+        ),
+        InlineKeyboardButton(
+            "❤️ Избранное", 
+            callback_data=f"fav_{item.item_id}"
+        )
     )
     markup.row(
-        InlineKeyboardButton("⭐ Рекомендации", callback_data="recs")
+        InlineKeyboardButton(
+            "⭐ Рекомендации",
+            callback_data="recs"
+        )
     )
 
     try:
@@ -98,12 +117,16 @@ def callback(call):
         # Выдача персональных рекомендаций
         recs = get_recommendations(user_id)
         if recs.empty:
-            bot.send_message(call.message.chat.id, "Пока мало данных 🙂 Оцените несколько объектов.")
+            bot.send_message(call.message.chat.id, 
+                             "Пока мало данных 🙂 Оцените несколько объектов.")
             return
 
         bot.send_message(call.message.chat.id, "⭐ Ваши рекомендации:")
         for _, row in recs.iterrows():
-            bot.send_message(call.message.chat.id, f"🔥 {row.title}\n{row.description}")
+            bot.send_message(
+                call.message.chat.id, 
+                f"🔥 {row.title}\n{row.description}"
+            )
 
 
 print("Бот запущен...")
