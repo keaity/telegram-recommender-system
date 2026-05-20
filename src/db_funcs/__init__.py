@@ -35,4 +35,3 @@ def add_interaction_db(user_id: int, item_id: int, event: str) -> None:
 def get_interactions_df() -> pd.DataFrame:
     """Возвращает все взаимодействия как pandas DataFrame."""
     return pd.read_sql_query("SELECT * FROM interactions", conn)
-
