@@ -62,4 +62,3 @@ def get_recommendations(user_id: int, top_n: int = 5) -> pd.DataFrame:
     rec_ids = [i[0] for i in ranked[:top_n]]
 
     return items_df[items_df.item_id.isin(rec_ids)]
-
