@@ -4,7 +4,7 @@ import telebot
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 from config import TOKEN
-from dataset import items_df
+from dataset import items_df, posters
 from interactions import add_interaction
 from recommender import get_recommendations
 from db_funcs import init_db
@@ -32,17 +32,13 @@ def start(message):
         "Привет! 👋\n\n"
         "Я Telegram-бот с рекомендательной системой.\n"
         "Подбираю фильмы 🎬, книги 📚 и курсы 🎮.\n\n"
-        "Как это работает:\n"
-        "• Листай каталог и оценивай\n"
-        "• Я запоминаю твои предпочтения\n"
-        "• Получай персональные рекомендации\n\n"
         "Нажми «Каталог», чтобы начать."
     )
     bot.send_message(message.chat.id, text, reply_markup=main_menu())
 
 
 def send_item(chat_id: int, user_id: int) -> None:
-    """Отправляет объект пользователю."""
+    """Отправляет объект пользователю с картинкой (если есть)."""
     idx = user_positions.get(user_id, 0) % len(items_df)
     item = items_df.iloc[idx]
 
@@ -60,7 +56,26 @@ def send_item(chat_id: int, user_id: int) -> None:
     )
     markup.row(InlineKeyboardButton("⭐ Рекомендации", callback_data="recs"))
 
-    bot.send_message(chat_id, text, parse_mode="Markdown", reply_markup=markup)
+    # Путь к изображению
+    poster_path = f"src/dataset/{posters.get(item.item_id)}"
+
+    try:
+        with open(poster_path, "rb") as photo:
+            bot.send_photo(
+                chat_id,
+                photo,
+                caption=text,
+                parse_mode="Markdown",
+                reply_markup=markup
+            )
+    except Exception:
+        # Если картинка не найдена — отправляем только текст
+        bot.send_message(
+            chat_id,
+            text,
+            parse_mode="Markdown",
+            reply_markup=markup
+        )
 
 
 @bot.callback_query_handler(func=lambda call: True)
