@@ -1,4 +1,4 @@
-"""Данные о всех объектах (фильмы, книги, курсы)."""
+"""Данные о всех объектах (фильмы, книги, курсы) и пути к постерам."""
 
 import pandas as pd
 
@@ -15,3 +15,15 @@ items = [
 ]
 
 items_df = pd.DataFrame(items, columns=["item_id", "title", "domain", "description"])
+
+posters = {
+    1: "images/1.jpg",   # Interstellar
+    2: "images/2.jpg",   # The Matrix
+    3: "images/3.jpg",   # Harry Potter
+    4: "images/4.jpg",   # Lord of the Rings
+    5: "images/5.jpg",   # Python Course
+    6: "images/6.jpg",   # ML Course
+    7: "images/7.jpg",   # Inception
+    8: "images/8.jpg",   # Data Science Book
+    9: "images/9.jpg",   # Web Dev Course
+}
