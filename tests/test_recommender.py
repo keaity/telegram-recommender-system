@@ -47,4 +47,3 @@ def test_get_recommendations():
     ]
 
     assert list(recommendations.columns) == expected_columns
-    
