@@ -4,3 +4,6 @@ exclude =
     .git,
     __pycache__,
     .venv
+
+per-file-ignores =
+    tests/*: E402
