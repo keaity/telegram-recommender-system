@@ -5,7 +5,6 @@ import sys
 
 import pandas as pd
 
-# Добавляем корень проекта в PYTHONPATH
 root_dir = os.path.abspath(
     os.path.join(os.path.dirname(__file__), "..")
 )
@@ -17,6 +16,8 @@ from src.recommender import (
     get_recommendations,
     popularity_scores,
 )
+
+init_db()
 
 
 def test_popularity_scores():
