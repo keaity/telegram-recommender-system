@@ -11,6 +11,7 @@ root_dir = os.path.abspath(
 )
 sys.path.insert(0, root_dir)
 
+from src.db_funcs import init_db
 from src.recommender import (
     content_scores,
     get_recommendations,
