@@ -1,10 +1,10 @@
 import telebot
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
-from config import TOKEN
-from dataset import items_df
-from interactions import add_interaction
-from recommender import get_recommendations
-from db_funcs import init_db
+from src.config import TOKEN
+from src.dataset import items_df
+from src.interactions import add_interaction
+from src.recommender import get_recommendations
+from src.db_funcs import init_db
 
 # Инициализация базы данных при запуске бота
 init_db()
