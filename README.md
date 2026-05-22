@@ -33,20 +33,49 @@
 
 ---
 
-## Архитектура проекта
-src/
+## Структура проекта
 
-bot/ -  Основная логика бота и обработка callback-запросов
+```text
+telegram-recommender-system/
+│
+├── .github/
+│   └── workflows/
+│       └── ci.yml                # CI/CD пайплайн GitHub Actions
+│
+├── figures/                      # Графики и изображения для курсовой работы
+│   ├── comparison_k5.png
+│   └── ndcg_comparison.png
+│
+├── src/
+│   ├── bot/
+│   │   └── bot.py                # Основная логика Telegram-бота
+│   │
+│   ├── config/
+│   │   └── config.py             # Конфигурация проекта
+│   │
+│   ├── dataset/
+│   │   └── dataset.py            # Датасет объектов рекомендаций
+│   │
+│   ├── db_funcs/
+│   │   └── db_funcs.py           # Работа с SQLite
+│   │
+│   ├── interactions/
+│   │   └── interactions.py       # Обработка пользовательских взаимодействий
+│   │
+│   └── recommender/
+│       └── recommender.py        # Алгоритмы рекомендательной системы
+│
+├── tests/
+│   └── test_recommender.py       # Unit-тесты системы
+│
+├── .flake8                       # Настройки проверки PEP8
+├── .gitignore                    # Исключения Git
+├── README.md                     # Документация проекта
+└── requirements.txt              # Зависимости проекта
+```
 
-config - Конфигурация и безопасная загрузка токена
 
-dataset - Каталог объектов (мультидоменный контент)
 
-db_funcs - Работа с базой данных SQLite
-
-interactions - Слой обработки пользовательских действий
-
-recommender - Ядро рекомендательной системы
 
 
 ## Рекомендательная система
